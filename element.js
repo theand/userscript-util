@@ -1,7 +1,7 @@
 window.userscript_util = window.userscript_util || {};
 
 
-function shadowBodyButtonWith(msg) {
+function pseudoBodyButtonWith(msg) {
     const button = `
 body:before {
     background-color: rgba(163, 60, 214, 0.6);
@@ -25,7 +25,7 @@ body:before {
     return button;
 }
 
-window.userscript_util.shadowBodyButtonWith = shadowBodyButtonWith;
+window.userscript_util.pseudoBodyButtonWith = pseudoBodyButtonWith;
 
 
 window.userscript_util.ClearDiv = "<div style='clear: both;'>&nbsp;</div>";
