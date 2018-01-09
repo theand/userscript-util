@@ -24,7 +24,6 @@ body:before {
 `;
     return button;
 }
-
 window.userscript_util.pseudoBodyButtonWith = pseudoBodyButtonWith;
 
 
@@ -68,3 +67,26 @@ window.userscript_util.ListDiv = `
         box-sizing: border-box;'>
     </div>`;
 
+
+function attachLinkAreatTo(sel) {
+    const div = document.createElement("div");
+    div.innerHTML = userscript_util.ClearDiv + userscript_util.CopyDiv + userscript_util.ListDiv;
+    document.querySelector(sel).insertAdjacentElement("afterend", div);
+}
+window.userscript_util.attachLinkAreatTo = attachLinkAreatTo;
+
+
+function attachLinkAddress(href) {
+    document.querySelector("#article_link_list").append(href);
+    document.querySelector("#article_link_list").append(document.createElement("br"));
+}
+window.userscript_util.attachLinkAddress = attachLinkAddress;
+
+
+function attachLinkAddressExtractedFrom(sel) {
+    document.querySelectorAll(sel).forEach(e => {
+        userscript_util.attachLinkAddress(e.href);
+    });
+    userscript_util.attachLinkAddress("about:blank");
+}
+window.userscript_util.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;
