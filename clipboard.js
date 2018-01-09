@@ -23,4 +23,4 @@ function bindClipboardAction(sel){
     });
 
 }
-window.bindClipboardAction = bindClipboardAction;
+window.userscript_util.bindClipboardAction = bindClipboardAction;
