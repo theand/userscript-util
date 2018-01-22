@@ -1,4 +1,5 @@
 window.userscript_util = window.userscript_util || {};
+window.userscript_util.add = {};
 
 function addGlobalStyle(css) {
     const head = document.getElementsByTagName("head")[0];
@@ -8,7 +9,7 @@ function addGlobalStyle(css) {
     head.appendChild(style);
 }
 
-window.userscript_util.addGlobalStyle = addGlobalStyle;
+window.userscript_util.add.addGlobalStyle = addGlobalStyle;
 
 
 function addGlobalJavaScript(text) {
@@ -18,6 +19,6 @@ function addGlobalJavaScript(text) {
     document.body.appendChild(script);
 }
 
-window.userscript_util.addGlobalJavaScript = addGlobalJavaScript;
+window.userscript_util.add.addGlobalJavaScript = addGlobalJavaScript;
 
 

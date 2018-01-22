@@ -1,4 +1,5 @@
 window.userscript_util = window.userscript_util || {};
+window.userscript_util.clipboard = {};
 
 function bindClipboardAction(sel){
     if( !sel ){
@@ -23,4 +24,4 @@ function bindClipboardAction(sel){
     });
 
 }
-window.userscript_util.bindClipboardAction = bindClipboardAction;
+window.userscript_util.clipboard.bindClipboardAction = bindClipboardAction;

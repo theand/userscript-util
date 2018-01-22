@@ -1,5 +1,5 @@
 window.userscript_util = window.userscript_util || {};
-
+window.userscript_util.html = {};
 
 function htmlToElement(html) {
     const template = document.createElement("template");
@@ -8,6 +8,7 @@ function htmlToElement(html) {
 }
 
 window.userscript_util.htmlToElement = htmlToElement;
+window.userscript_util.html.htmlToElement = htmlToElement;
 
 function stripHtml(html) {
     const tmp = document.createElement("DIV");
@@ -16,3 +17,4 @@ function stripHtml(html) {
 }
 
 window.userscript_util.stripHtml = stripHtml;
+window.userscript_util.html.stripHtml = stripHtml;

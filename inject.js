@@ -1,5 +1,5 @@
 window.userscript_util = window.userscript_util || {};
-
+window.userscript_util.inject = {};
 
 function injectExternalJavaScript(src) {
     const script = document.createElement("script");
@@ -9,6 +9,7 @@ function injectExternalJavaScript(src) {
 }
 
 window.userscript_util.injectExternalJavaScript = injectExternalJavaScript;
+window.userscript_util.inject.injectExternalJavaScript = injectExternalJavaScript;
 
 function injectExternalStyleSheet(href) {
     const link = document.createElement("link");
@@ -18,3 +19,4 @@ function injectExternalStyleSheet(href) {
 }
 
 window.userscript_util.injectExternalStyleSheet = injectExternalStyleSheet;
+window.userscript_util.inject.injectExternalStyleSheet = injectExternalStyleSheet;

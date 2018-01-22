@@ -1,5 +1,5 @@
 window.userscript_util = window.userscript_util || {};
-
+window.userscript_util.param = {};
 
 function removeParam(URI, REDUNDANT_PARAM_KEY, GM_info){
     try {
@@ -29,4 +29,4 @@ function removeParam(URI, REDUNDANT_PARAM_KEY, GM_info){
     }
 }
 
-window.userscript_util.removeParam = removeParam;
+window.userscript_util.param.removeParam = removeParam;
