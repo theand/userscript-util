@@ -26,14 +26,12 @@ body:before {
     return button;
 }
 
-window.userscript_util.pseudoBodyButtonWith = pseudoBodyButtonWith;
 window.userscript_util.element.pseudoBodyButtonWith = pseudoBodyButtonWith;
 
 
-window.userscript_util.ClearDiv = "<div style='clear: both;'>&nbsp;</div>";
-window.userscript_util.element.ClearDiv = window.userscript_util.ClearDiv;
+window.userscript_util.element.ClearDiv = "<div style='clear: both;'>&nbsp;</div>";
 
-window.userscript_util.CopyDiv = `
+window.userscript_util.element.CopyDiv = `
     <div>
         <button id='copy-button'  data-clipboard-target='#article_link_list' style='margin: 5px;
         color: #fff;
@@ -59,9 +57,8 @@ window.userscript_util.CopyDiv = `
         <br />
     </div>
     `;
-window.userscript_util.element.CopyDiv = window.userscript_util.CopyDiv;
 
-window.userscript_util.ListDiv = `
+window.userscript_util.element.ListDiv = `
     <div id='article_link_list' style='
         margin-bottom: 2em;
         padding: 15px;
@@ -71,7 +68,6 @@ window.userscript_util.ListDiv = `
         color: #333;
         box-sizing: border-box;'>
     </div>`;
-window.userscript_util.element.ListDiv = window.userscript_util.ListDiv;
 
 
 function attachLinkAreatTo(sel) {
@@ -80,7 +76,6 @@ function attachLinkAreatTo(sel) {
     document.querySelector(sel).insertAdjacentElement("afterend", div);
 }
 
-window.userscript_util.attachLinkAreatTo = attachLinkAreatTo;
 window.userscript_util.element.attachLinkAreatTo = attachLinkAreatTo;
 
 
@@ -89,7 +84,6 @@ function attachLinkAddress(href) {
     document.querySelector("#article_link_list").append(document.createElement("br"));
 }
 
-window.userscript_util.attachLinkAddress = attachLinkAddress;
 window.userscript_util.element.attachLinkAddress = attachLinkAddress;
 
 
@@ -100,5 +94,4 @@ function attachLinkAddressExtractedFrom(sel) {
     userscript_util.element.attachLinkAddress("about:blank");
 }
 
-window.userscript_util.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;
 window.userscript_util.element.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;

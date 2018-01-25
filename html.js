@@ -7,7 +7,6 @@ function htmlToElement(html) {
     return template.content;
 }
 
-window.userscript_util.htmlToElement = htmlToElement;
 window.userscript_util.html.htmlToElement = htmlToElement;
 
 function stripHtml(html) {
@@ -16,5 +15,4 @@ function stripHtml(html) {
     return tmp.textContent || tmp.innerText;
 }
 
-window.userscript_util.stripHtml = stripHtml;
 window.userscript_util.html.stripHtml = stripHtml;

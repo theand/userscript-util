@@ -8,7 +8,6 @@ function injectExternalJavaScript(src) {
     document.body.appendChild(script);
 }
 
-window.userscript_util.injectExternalJavaScript = injectExternalJavaScript;
 window.userscript_util.inject.injectExternalJavaScript = injectExternalJavaScript;
 
 function injectExternalStyleSheet(href) {
@@ -18,5 +17,4 @@ function injectExternalStyleSheet(href) {
     document.head.appendChild(link);
 }
 
-window.userscript_util.injectExternalStyleSheet = injectExternalStyleSheet;
 window.userscript_util.inject.injectExternalStyleSheet = injectExternalStyleSheet;
