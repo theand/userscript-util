@@ -1,8 +1,8 @@
 window.userscript_util = window.userscript_util || {};
 window.userscript_util.clipboard = {};
 
-function bindClipboardAction(sel){
-    if( !sel ){
+function bindClipboardAction(sel) {
+    if (!sel) {
         sel = "#copy-button";
     }
     const clipboard = new Clipboard(sel);
@@ -24,4 +24,5 @@ function bindClipboardAction(sel){
     });
 
 }
+
 window.userscript_util.clipboard.bindClipboardAction = bindClipboardAction;

@@ -1,7 +1,7 @@
 window.userscript_util = window.userscript_util || {};
 window.userscript_util.param = {};
 
-function removeParam(URI, REDUNDANT_PARAM_KEY, GM_info){
+function removeParam(URI, REDUNDANT_PARAM_KEY, GM_info) {
     try {
         //querystring to object
         const uri = new URI(window.location);

@@ -25,6 +25,7 @@ body:before {
 `;
     return button;
 }
+
 window.userscript_util.pseudoBodyButtonWith = pseudoBodyButtonWith;
 window.userscript_util.element.pseudoBodyButtonWith = pseudoBodyButtonWith;
 
@@ -78,6 +79,7 @@ function attachLinkAreatTo(sel) {
     div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
     document.querySelector(sel).insertAdjacentElement("afterend", div);
 }
+
 window.userscript_util.attachLinkAreatTo = attachLinkAreatTo;
 window.userscript_util.element.attachLinkAreatTo = attachLinkAreatTo;
 
@@ -86,6 +88,7 @@ function attachLinkAddress(href) {
     document.querySelector("#article_link_list").append(href);
     document.querySelector("#article_link_list").append(document.createElement("br"));
 }
+
 window.userscript_util.attachLinkAddress = attachLinkAddress;
 window.userscript_util.element.attachLinkAddress = attachLinkAddress;
 
@@ -96,5 +99,6 @@ function attachLinkAddressExtractedFrom(sel) {
     });
     userscript_util.element.attachLinkAddress("about:blank");
 }
+
 window.userscript_util.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;
 window.userscript_util.element.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;
