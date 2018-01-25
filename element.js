@@ -75,7 +75,7 @@ window.userscript_util.element.ListDiv = window.userscript_util.ListDiv;
 
 function attachLinkAreatTo(sel) {
     const div = document.createElement("div");
-    div.innerHTML = userscript_util.ClearDiv + userscript_util.CopyDiv + userscript_util.ListDiv;
+    div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
     document.querySelector(sel).insertAdjacentElement("afterend", div);
 }
 window.userscript_util.attachLinkAreatTo = attachLinkAreatTo;
@@ -92,9 +92,9 @@ window.userscript_util.element.attachLinkAddress = attachLinkAddress;
 
 function attachLinkAddressExtractedFrom(sel) {
     document.querySelectorAll(sel).forEach(e => {
-        userscript_util.attachLinkAddress(e.href);
+        userscript_util.element.attachLinkAddress(e.href);
     });
-    userscript_util.attachLinkAddress("about:blank");
+    userscript_util.element.attachLinkAddress("about:blank");
 }
 window.userscript_util.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;
 window.userscript_util.element.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;

@@ -25,7 +25,7 @@ function removeParam(URI, REDUNDANT_PARAM_KEY, GM_info){
         }
 
     } catch (err) {
-        userscript_util.logGmError(GM_info, err);
+        userscript_util.exec.logGmError(GM_info, err);
     }
 }
 
