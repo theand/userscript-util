@@ -10,11 +10,15 @@ function prepareRedirectButton(title) {
 window.userscript_util.redirect.prepareRedirectButton = prepareRedirectButton;
 
 
-function bindRedirectEvent(new_url) {
+function bindRedirectEvent(new_url, redirector) {
     document.querySelector("body").addEventListener("click", function (event) {
         // console.log(event.target.tagName + " - " + event.type);
         if (event.target.tagName === "BODY") {
-            document.location.href = new_url;
+            if(redirector) {
+                redirector(new_url);
+            }else{
+                document.location.href = new_url;
+            }
         }
     });
 }
@@ -22,9 +26,10 @@ function bindRedirectEvent(new_url) {
 window.userscript_util.redirect.bindRedirectEvent = bindRedirectEvent;
 
 
-function metaPropertyUrlResolver(key) {
-    key = key || "og:url";
-    const url = document.querySelector(`meta[property='${key}']`);
+function metaPropertyUrlResolver(key, value) {
+    key = key || "property";
+    value = value || "og:url";
+    const url = document.querySelector(`meta[${key}='${value}']`);
 
     if (!url) {
         throw "no meta";
@@ -35,15 +40,17 @@ function metaPropertyUrlResolver(key) {
 window.userscript_util.redirect.metaPropertyUrlResolver = metaPropertyUrlResolver;
 
 
-function installRedirectButton(button_title, targetUrlResolver) {
+function installRedirectButton(button_title, targetUrlResolver, redirector) {
     try {
 
-        userscript_util.redirect.prepareRedirectButton(button_title);
 
         const targetUrl = targetUrlResolver();
         console.log(`targetUrl is ${targetUrl}`);
 
-        userscript_util.redirect.bindRedirectEvent(targetUrl);
+        if(targetUrl){
+            userscript_util.redirect.prepareRedirectButton(button_title);
+            userscript_util.redirect.bindRedirectEvent(targetUrl, redirector);
+        }
 
     } catch (err) {
         userscript_util.exec.logGmError(GM_info, err);
