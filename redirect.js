@@ -40,11 +40,11 @@ function metaPropertyUrlResolver(key, value) {
 window.userscript_util.redirect.metaPropertyUrlResolver = metaPropertyUrlResolver;
 
 
-function installRedirectButton(button_title, targetUrlResolver, redirector) {
+function installRedirectButton(button_title, targetUrlResolver, redirector, resolver_key, resolver_value) {
     try {
 
 
-        const targetUrl = targetUrlResolver();
+        const targetUrl = targetUrlResolver(resolver_key, resolver_value);
         console.log(`targetUrl is ${targetUrl}`);
 
         if(targetUrl){
