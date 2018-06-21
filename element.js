@@ -2,7 +2,7 @@ window.userscript_util = window.userscript_util || {};
 window.userscript_util.element = {};
 
 
-function pseudoBodyButtonWith(msg) {
+window.userscript_util.element.pseudoBodyButtonWith = (msg) => {
     const button = `
 body:before {
     background-color: rgba(163, 60, 214, 0.6);
@@ -24,9 +24,7 @@ body:before {
 }
 `;
     return button;
-}
-
-window.userscript_util.element.pseudoBodyButtonWith = pseudoBodyButtonWith;
+};
 
 
 window.userscript_util.element.ClearDiv = "<div style='clear: both;'>&nbsp;</div>";
@@ -70,28 +68,23 @@ window.userscript_util.element.ListDiv = `
     </div>`;
 
 
-function attachLinkAreatTo(sel) {
+window.userscript_util.element.attachLinkAreatTo = (sel) => {
     const div = document.createElement("div");
     div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
     document.querySelector(sel).insertAdjacentElement("afterend", div);
-}
-
-window.userscript_util.element.attachLinkAreatTo = attachLinkAreatTo;
+};
 
 
-function attachLinkAddress(href) {
+window.userscript_util.element.attachLinkAddress = (href) => {
     document.querySelector("#article_link_list").append(href);
     document.querySelector("#article_link_list").append(document.createElement("br"));
-}
-
-window.userscript_util.element.attachLinkAddress = attachLinkAddress;
+};
 
 
-function attachLinkAddressExtractedFrom(sel) {
+window.userscript_util.element.attachLinkAddressExtractedFrom = (sel) => {
     document.querySelectorAll(sel).forEach(e => {
         userscript_util.element.attachLinkAddress(e.href);
     });
     userscript_util.element.attachLinkAddress("about:blank");
-}
+};
 
-window.userscript_util.element.attachLinkAddressExtractedFrom = attachLinkAddressExtractedFrom;

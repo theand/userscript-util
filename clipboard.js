@@ -1,7 +1,7 @@
 window.userscript_util = window.userscript_util || {};
 window.userscript_util.clipboard = {};
 
-function bindClipboardAction(sel) {
+window.userscript_util.clipboard.bindClipboardAction = (sel) => {
     if (!sel) {
         sel = "#copy-button";
     }
@@ -23,6 +23,5 @@ function bindClipboardAction(sel) {
         console.error("Trigger:", e.trigger);
     });
 
-}
+};
 
-window.userscript_util.clipboard.bindClipboardAction = bindClipboardAction;
