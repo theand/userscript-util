@@ -83,10 +83,10 @@ window.userscript_util.element.attachLinkAddress = (href) => {
 
 window.userscript_util.element.attachLinkAddressExtractedFrom = (sel) => {
     document.querySelectorAll(sel).forEach((e, i) => {
-        userscript_util.element.attachLinkAddress(e.href);
-        if( i%5 === 0 ){
+        if( i%8 === 0 ){
             userscript_util.element.attachLinkAddress("");
         }
+        userscript_util.element.attachLinkAddress(e.href);
     });
     userscript_util.element.attachLinkAddress("about:blank");
 };
