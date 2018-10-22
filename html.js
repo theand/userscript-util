@@ -2,6 +2,7 @@ window.userscript_util = window.userscript_util || {};
 window.userscript_util.html = {};
 
 window.userscript_util.html.htmlToElement = (html) => {
+    //https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/content
     const template = document.createElement("template");
     template.innerHTML = html;
     return template.content;
