@@ -83,7 +83,7 @@ window.userscript_util.element.attachLinkAddress = (href) => {
 
 window.userscript_util.element.attachLinkAddressExtractedFrom = (sel) => {
     document.querySelectorAll(sel).forEach((e, i) => {
-        if( i%8 === 0 ){
+        if( i%10 === 0 ){
             userscript_util.element.attachLinkAddress("");
         }
         userscript_util.element.attachLinkAddress(e.href);
