@@ -59,7 +59,7 @@ window.userscript_util.element.CopyDiv = `
 window.userscript_util.element.NthCopyDiv = (index) => {
     return `
     <div>
-        <button id='copy-button${index}'  data-clipboard-target='#article_link_list' style='margin: 5px;
+        <button id='copy-button${index}'  data-clipboard-target='#article_link_list${index}' style='margin: 5px;
         color: #fff;
         background-color: #5cb85c;
         border-color: #4cae4c;
