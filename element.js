@@ -81,15 +81,21 @@ window.userscript_util.element.attachLinkAddress = (href) => {
 };
 
 
-window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakPredicate, skipPredicate) => {
+window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakPredicate, skipPredicate, urlBuilder) => {
     document.querySelectorAll(sel).forEach((e, i) => {
+        let url;
+        if( urlBuilder ) {
+            url = urlBuilder(e);
+        }else{
+            url = e.href
+        }
         if( lineBreakPredicate && lineBreakPredicate(i) ){
             userscript_util.element.attachLinkAddress("");
         }
         if( skipPredicate && skipPredicate(e, i) ){
             //do nothing;
         }else {
-            userscript_util.element.attachLinkAddress(e.href);
+            userscript_util.element.attachLinkAddress(url);
         }
     });
     userscript_util.element.attachLinkAddress("about:blank");
