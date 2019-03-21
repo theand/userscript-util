@@ -111,7 +111,7 @@ window.userscript_util.element.NthListDiv = (index) => {
 
 window.userscript_util.element.attachLinkAreatTo = (sel, index) => {
     const div = document.createElement("div");
-    if( index === "" ) {
+    if( index === "" || index === undefined || index === null) {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
     }else{
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.NthCopyDiv(index) + userscript_util.element.NthListDiv(index);
@@ -126,7 +126,7 @@ window.userscript_util.element.attachLinkAddress = (href, index) => {
 };
 
 
-window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakPredicate, skipPredicate, urlBuilder, indexPredicate) => {
+window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel, lineBreakPredicate, skipPredicate, urlBuilder, indexPredicate) => {
     if( !indexPredicate ){
         indexPredicate = () => "";
     }
@@ -134,7 +134,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakP
     const indexSet = new Set();
     let lastIndex = "";
 
-    document.querySelectorAll(sel).forEach((e, i) => {
+    document.querySelectorAll(fromSel).forEach((e, i) => {
 
         if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
             userscript_util.element.attachLinkAddress("about:blank", lastIndex);
@@ -142,7 +142,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakP
         }
 
         if( !indexSet.has(indexPredicate(i))){
-            userscript_util.element.attachLinkAreatTo("form.bd_srch_btm", indexPredicate(i));
+            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i));
             indexSet.add(indexPredicate(i));
         }
 
