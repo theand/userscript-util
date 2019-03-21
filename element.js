@@ -137,7 +137,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakP
     document.querySelectorAll(sel).forEach((e, i) => {
 
         if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
-            userscript_util.element.attachLinkAddress("about:blank");
+            userscript_util.element.attachLinkAddress("about:blank", lastIndex);
             userscript_util.clipboard.bindClipboardAction(null, lastIndex);
         }
 

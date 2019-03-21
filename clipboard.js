@@ -3,7 +3,7 @@ window.userscript_util.clipboard = {};
 
 window.userscript_util.clipboard.bindClipboardAction = (sel, index) => {
     if (!sel) {
-        if( index ) {
+        if( index !== undefined ) {
             sel = `#copy-button${index}`;
         }else{
             sel = `#copy-button`;
