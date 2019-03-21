@@ -161,5 +161,10 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (sel, lineBreakP
 
         lastIndex = indexPredicate(i);
     });
+    if( lastIndex !== ""){
+        userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+        userscript_util.clipboard.bindClipboardAction(null, lastIndex);
+    }
+
 };
 
