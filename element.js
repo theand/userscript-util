@@ -136,6 +136,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
 
     document.querySelectorAll(fromSel).forEach((e, i) => {
 
+        //여러구역일때, 이전 구역이 끝났으면
         if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
             userscript_util.element.attachLinkAddress("about:blank", lastIndex);
             userscript_util.clipboard.bindClipboardAction(null, lastIndex);
@@ -161,10 +162,11 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
 
         lastIndex = indexPredicate(i);
     });
-    if( lastIndex !== ""){
-        userscript_util.element.attachLinkAddress("about:blank", lastIndex);
-        userscript_util.clipboard.bindClipboardAction(null, lastIndex);
-    }
+
+    //통채로 한구역일때 혹은
+    //여러 구역일때 마지막 구역은 처리가 안되서 한번 더 처리.
+    userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+    userscript_util.clipboard.bindClipboardAction(null, lastIndex);
 
 };
 
