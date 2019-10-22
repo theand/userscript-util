@@ -126,7 +126,7 @@ window.userscript_util.element.attachLinkAddress = (href, index) => {
 };
 
 
-window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel, lineBreakPredicate, skipPredicate, urlBuilder, indexPredicate) => {
+window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel, lineBreakPredicate, skipPredicate, urlBuilder, indexPredicate, skipBlank) => {
     if( !indexPredicate ){
         indexPredicate = () => "";
     }
@@ -138,7 +138,9 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
 
         //여러구역일때, 이전 구역이 끝났으면
         if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
-            userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+            if(!skipBlank){
+                userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+            }
             userscript_util.clipboard.bindClipboardAction(null, lastIndex);
         }
 
@@ -146,7 +148,6 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
             userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i));
             indexSet.add(indexPredicate(i));
         }
-
 
         if( skipPredicate && skipPredicate(e, i) ){
             //do nothing;
@@ -165,7 +166,9 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
 
     //통채로 한구역일때 혹은
     //여러 구역일때 마지막 구역은 처리가 안되서 한번 더 처리.
-    userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+    if(!skipBlank) {
+        userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+    }
     userscript_util.clipboard.bindClipboardAction(null, lastIndex);
 
 };
