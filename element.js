@@ -18,7 +18,7 @@ body:before {
     text-align: center;
     top: 3em;
     left: 3em;
-    z-index: 9999;
+    z-index: 1000001;
     pointer-events: auto;
     cursor: pointer;
 }
