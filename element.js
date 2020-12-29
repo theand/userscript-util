@@ -116,7 +116,7 @@ window.userscript_util.element.attachLinkAreatTo = (sel, index) => {
     }else{
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.NthCopyDiv(index) + userscript_util.element.NthListDiv(index);
     }
-    document.querySelector(sel).insertAdjacentElement("afterend", div);
+    document.querySelector(sel).insertAdjacentElement("beforeend", div);
 };
 
 
