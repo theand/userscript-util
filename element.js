@@ -137,7 +137,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
     document.querySelectorAll(fromSel).forEach((e, i) => {
 
         //여러구역일때, 이전 구역이 끝났으면
-        if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
+        if( lineBreakPredicate && lineBreakPredicate(i, e) && i!==0 ){
             if(!skipBlank){
                 userscript_util.element.attachLinkAddress("about:blank", lastIndex);
             }
