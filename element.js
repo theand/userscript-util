@@ -152,7 +152,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
         //여러구역일때, 이전 구역이 끝났으면
         if (lineBreakPredicate && lineBreakPredicate(i) && i !== 0) {
             if (!skipBlank) {
-                userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+                userscript_util.element.attachLinkAddress("about:blank", lastIndex, useLiInsteadOfBr);
             }
             userscript_util.clipboard.bindClipboardAction(null, lastIndex);
         }
@@ -171,7 +171,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
             } else {
                 url = e.href;
             }
-            userscript_util.element.attachLinkAddress(url, indexPredicate(i));
+            userscript_util.element.attachLinkAddress(url, indexPredicate(i), useLiInsteadOfBr);
         }
 
         lastIndex = indexPredicate(i);
@@ -180,7 +180,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
     //통채로 한구역일때 혹은
     //여러 구역일때 마지막 구역은 처리가 안되서 한번 더 처리.
     if (!skipBlank) {
-        userscript_util.element.attachLinkAddress("about:blank", lastIndex);
+        userscript_util.element.attachLinkAddress("about:blank", lastIndex, useLiInsteadOfBr);
     }
     userscript_util.clipboard.bindClipboardAction(null, lastIndex);
 
