@@ -80,7 +80,6 @@ window.userscript_util.element.NthCopyDiv = (index) => {
         border-radius: 4px;
         -webkit-appearance: button;
         overflow: visible;'>Copy</button>
-        <ul></ul>
     </div>
     `;
 };
@@ -94,6 +93,7 @@ window.userscript_util.element.ListDiv = `
         line-height: 1.42857143;
         color: #333;
         box-sizing: border-box;'>
+        <ul></ul>
     </div>`;
 
 window.userscript_util.element.NthListDiv = (index) => {
@@ -106,6 +106,7 @@ window.userscript_util.element.NthListDiv = (index) => {
         line-height: 1.42857143;
         color: #333;
         box-sizing: border-box;'>
+        <ul></ul>
     </div>`;
 };
 
