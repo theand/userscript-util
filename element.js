@@ -37,6 +37,7 @@ window.userscript_util.element.CopyDiv = `
         border-color: #4cae4c;
         display: inline-block;
         padding: 6px 12px;
+        margin-bottom: 2em;
         font-size: 14px;
         font-weight: 400;
         line-height: 1.42857143;
@@ -51,8 +52,7 @@ window.userscript_util.element.CopyDiv = `
         border-radius: 4px;
         -webkit-appearance: button;
         overflow: visible;'>Copy</button>
-        <br />
-        <br />
+        <ul></ul>
     </div>
     `;
 
@@ -65,6 +65,7 @@ window.userscript_util.element.NthCopyDiv = (index) => {
         border-color: #4cae4c;
         display: inline-block;
         padding: 6px 12px;
+        margin-bottom: 2em;
         font-size: 14px;
         font-weight: 400;
         line-height: 1.42857143;
@@ -79,8 +80,7 @@ window.userscript_util.element.NthCopyDiv = (index) => {
         border-radius: 4px;
         -webkit-appearance: button;
         overflow: visible;'>Copy</button>
-        <br />
-        <br />
+        <ul></ul>
     </div>
     `;
 };
@@ -124,7 +124,7 @@ window.userscript_util.element.attachLinkAddress = (linkAnchorEl, index, useLiIn
     if( useLiInsteadOfBr){
         const li = document.createElement("li");
         li.append(linkAnchorEl);
-        document.querySelector(`#article_link_list${index}`).append(li);
+        document.querySelector(`#article_link_list${index} ul`).append(li);
     }else{
         document.querySelector(`#article_link_list${index}`).append(linkAnchorEl);
         document.querySelector(`#article_link_list${index}`).append(document.createElement("br"));
@@ -147,10 +147,6 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
     const indexSet = new Set();
     let lastIndex = "";
 
-    if (useLiInsteadOfBr) {
-        document.querySelector(`#article_link_list${index}`).append(document.createElement("ul"));
-    }
-
     document.querySelectorAll(fromSel).forEach((e, i) => {
 
         //여러구역일때, 이전 구역이 끝났으면
@@ -162,7 +158,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
         }
 
         if (!indexSet.has(indexPredicate(i))) {
-            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i));
+            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i), useLiInsteadOfBr);
             indexSet.add(indexPredicate(i));
         }
 
