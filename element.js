@@ -110,14 +110,18 @@ window.userscript_util.element.NthListDiv = (index) => {
     </div>`;
 };
 
-window.userscript_util.element.attachLinkAreatTo = (sel, index) => {
+window.userscript_util.element.attachLinkAreatTo = (sel, index, insertAfterEnd) => {
     const div = document.createElement("div");
     if (index === "" || index === undefined || index === null) {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
     } else {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.NthCopyDiv(index) + userscript_util.element.NthListDiv(index);
     }
-    document.querySelector(sel).insertAdjacentElement("beforeend", div);
+    if( insertAfterEnd ){
+        document.querySelector(sel).insertAdjacentElement("afterend", div);
+    }else{
+        document.querySelector(sel).insertAdjacentElement("beforeend", div);
+    }
 };
 
 
@@ -140,7 +144,8 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
                                                                  urlBuilder,
                                                                  indexPredicate,
                                                                  skipBlank,
-                                                                 useLiInsteadOfBr) => {
+                                                                 useLiInsteadOfBr,
+                                                                 insertAfterEnd) => {
     if (!indexPredicate) {
         indexPredicate = () => "";
     }
@@ -159,7 +164,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
         }
 
         if (!indexSet.has(indexPredicate(i))) {
-            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i), useLiInsteadOfBr);
+            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i), useLiInsteadOfBr, insertAfterEnd);
             indexSet.add(indexPredicate(i));
         }
 
