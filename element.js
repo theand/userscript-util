@@ -107,56 +107,73 @@ window.userscript_util.element.NthListDiv = (index) => {
         color: #333;
         box-sizing: border-box;'>
     </div>`;
-}
+};
 
 window.userscript_util.element.attachLinkAreatTo = (sel, index) => {
     const div = document.createElement("div");
-    if( index === "" || index === undefined || index === null) {
+    if (index === "" || index === undefined || index === null) {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
-    }else{
+    } else {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.NthCopyDiv(index) + userscript_util.element.NthListDiv(index);
     }
     document.querySelector(sel).insertAdjacentElement("beforeend", div);
 };
 
 
-window.userscript_util.element.attachLinkAddress = (href, index) => {
-    document.querySelector(`#article_link_list${index}`).append(href);
-    document.querySelector(`#article_link_list${index}`).append(document.createElement("br"));
+window.userscript_util.element.attachLinkAddress = (linkAnchorEl, index, useLiInsteadOfBr) => {
+    if( useLiInsteadOfBr){
+        const li = document.createElement("li");
+        li.append(linkAnchorEl);
+        document.querySelector(`#article_link_list${index}`).append(li);
+    }else{
+        document.querySelector(`#article_link_list${index}`).append(linkAnchorEl);
+        document.querySelector(`#article_link_list${index}`).append(document.createElement("br"));
+    }
 };
 
 
-window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel, lineBreakPredicate, skipPredicate, urlBuilder, indexPredicate, skipBlank) => {
-    if( !indexPredicate ){
+window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
+                                                                 toSel,
+                                                                 lineBreakPredicate,
+                                                                 skipPredicate,
+                                                                 urlBuilder,
+                                                                 indexPredicate,
+                                                                 skipBlank,
+                                                                 useLiInsteadOfBr) => {
+    if (!indexPredicate) {
         indexPredicate = () => "";
     }
 
     const indexSet = new Set();
     let lastIndex = "";
 
+    if (useLiInsteadOfBr) {
+        document.querySelector(`#article_link_list${index}`).append(document.createElement("ul"));
+    }
+
     document.querySelectorAll(fromSel).forEach((e, i) => {
 
         //여러구역일때, 이전 구역이 끝났으면
-        if( lineBreakPredicate && lineBreakPredicate(i) && i!==0 ){
-            if(!skipBlank){
+        if (lineBreakPredicate && lineBreakPredicate(i) && i !== 0) {
+            if (!skipBlank) {
                 userscript_util.element.attachLinkAddress("about:blank", lastIndex);
             }
             userscript_util.clipboard.bindClipboardAction(null, lastIndex);
         }
 
-        if( !indexSet.has(indexPredicate(i))){
+        if (!indexSet.has(indexPredicate(i))) {
             userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i));
             indexSet.add(indexPredicate(i));
         }
 
-        if( skipPredicate && skipPredicate(e, i) ){
+        if (skipPredicate && skipPredicate(e, i)) {
             //do nothing;
-        }else {
+        } else {
             let url;
-            if( urlBuilder ) {
+            if (urlBuilder) {
                 url = urlBuilder(e);
-            }else{
-                url = e.href
+            } else {
+                url = e.href;
             }
             userscript_util.element.attachLinkAddress(url, indexPredicate(i));
         }
@@ -166,7 +183,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel, toSel,
 
     //통채로 한구역일때 혹은
     //여러 구역일때 마지막 구역은 처리가 안되서 한번 더 처리.
-    if(!skipBlank) {
+    if (!skipBlank) {
         userscript_util.element.attachLinkAddress("about:blank", lastIndex);
     }
     userscript_util.clipboard.bindClipboardAction(null, lastIndex);
