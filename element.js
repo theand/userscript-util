@@ -52,7 +52,6 @@ window.userscript_util.element.CopyDiv = `
         border-radius: 4px;
         -webkit-appearance: button;
         overflow: visible;'>Copy</button>
-        <ul></ul>
     </div>
     `;
 
@@ -110,7 +109,7 @@ window.userscript_util.element.NthListDiv = (index) => {
     </div>`;
 };
 
-window.userscript_util.element.attachLinkAreatTo = (sel, index, insertAfterEnd) => {
+window.userscript_util.element.attachLinkAreaTo = (sel, index, insertAfterEnd) => {
     const div = document.createElement("div");
     if (index === "" || index === undefined || index === null) {
         div.innerHTML = userscript_util.element.ClearDiv + userscript_util.element.CopyDiv + userscript_util.element.ListDiv;
@@ -164,7 +163,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
         }
 
         if (!indexSet.has(indexPredicate(i))) {
-            userscript_util.element.attachLinkAreatTo(toSel, indexPredicate(i), useLiInsteadOfBr, insertAfterEnd);
+            userscript_util.element.attachLinkAreaTo(toSel, indexPredicate(i), useLiInsteadOfBr, insertAfterEnd);
             indexSet.add(indexPredicate(i));
         }
 
