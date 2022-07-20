@@ -172,7 +172,7 @@ window.userscript_util.element.attachLinkAddressExtractedFrom = (fromSel,
         } else {
             let url;
             if (urlBuilder) {
-                url = urlBuilder(e);
+                url = urlBuilder(e, i);
             } else {
                 url = e.href;
             }
